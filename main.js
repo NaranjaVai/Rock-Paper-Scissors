@@ -1,10 +1,42 @@
 // Simulador de rock, paper, scissors
+/* 
+class Jugador {
+    constructor(nombre,historialJugadas){
+        this.nombre = nombre;
+        this.historialJugadas = historialJugadas;
+    }
+
+}    */
+/* 
+function verificar(){
+    let choice
+   do{
+     choice = prompt('Juego de piedra, papel o tijera' + '\n Elija la opcion que va a usar').toLowerCase();
+    } while((choice != 'piedra') && (choice != 'papel') && (choice != 'tijera'));
+    return choice;
+}
+ */
+/* 
+function verificarSiNo(text){
+    let a
+    do{
+        a = prompt(text).toLowerCase();
+       } while((a != 'si') && (a != 'no'));
+       return a;
+}
+ */
+//const texto = ['Quiere volver a jugar? (Si o No)', 'Desea ver el Historial de partidas? (Si o No)']
+
+const opciones = document.querySelectorAll('button')
+const opcionUser = document.getElementById('valueUser')
+const opcionCPU = document.getElementById('valueCPU')
+const result = document.getElementById('result')
+let valorUser
 
 function resultado(decision) {
-    alert('La IA esta decidiendo su opcion');
     let valor, result
     let numero = Math.floor(Math.random() * 3);
-    console.log(numero);
+    opcionUser.innerHTML = decision
     switch (numero){
         case 0:
             valor = 'piedra';
@@ -16,89 +48,80 @@ function resultado(decision) {
             valor = 'tijera';
             break;
     }
-    console.log(valor);
+    opcionCPU.innerHTML = valor
     if (decision == valor){
-        alert('Es un empate, la IA ha decidido lo mismo que vos ' + valor);
         return result = 'Empate'
     }
 
     //opcion piedra
     if((decision == 'piedra') && (valor == 'tijera')){
-        alert('Has ganado!, la IA ha elegido tijeras');
         return result = 'Victoria'
     } else if ((decision == 'piedra') && (valor == 'papel')){
-        alert('Has perdido!, la IA ha elegido papel');
         return result = 'Derrota'
     }
 
     //opcion papel
     if((decision == 'papel') && (valor == 'piedra')){
-        alert('Has ganado!, la IA ha elegido piedra');
         return result = 'Victoria'
     } else if ((decision == 'papel') && (valor == 'tijera')){
-        alert('Has perdido!, la IA ha elegido tijeras');
         return result = 'Derrota'
     }
 
     //opcion tijera
     if((decision == 'tijera') && (valor == 'papel')){
-        alert('Has ganado!, la IA ha elegido papel');
         return result = 'Victoria'
     } else if ((decision == 'tijera') && (valor == 'piedra')){
-        alert('Has perdido!, la IA ha elegido piedra');
         return result = 'Derrota'
     }
 }
 
-function verificar(){
-    let choice
-   do{
-     choice = prompt('Juego de piedra, papel o tijera' + '\n Elija la opcion que va a usar').toLowerCase();
-    } while((choice != 'piedra') && (choice != 'papel') && (choice != 'tijera'));
-    return choice;
-}
 
-function verificarSiNo(text){
-    let a
-    do{
-        a = prompt(text).toLowerCase();
-       } while((a != 'si') && (a != 'no'));
-       return a;
-}
 
-let valorHistorial,restart = true
-const texto = ['Quiere volver a jugar? (Si o No)', 'Desea ver el Historial de partidas? (Si o No)']
+let valorHistorial
 const historial =[];
+const botonHistorial = document.getElementById('historial')
 
 
-while (restart){
-    alert('Va a comenzar el Juego');
-    valorHistorial = resultado(verificar());
+
+
+opciones.forEach(opcion => opcion.addEventListener('click', (e) => {
+    valorUser = e.target.id
+    console.log(valorUser)
+    valorHistorial = resultado(valorUser);
     switch (valorHistorial){
-            case 'Victoria':
-                historial.push ('Victoria');
-                break;
-            case 'Derrota':
-                historial.push ('Derrota');
-                break;
-            case 'Empate':
-                historial.push ('Empate');
-                break;
+        case 'Victoria':
+            historial.push ('Victoria');
+            result.innerHTML = 'Ganaste!'
+            break;
+        case 'Derrota':
+            historial.push ('Derrota');
+            result.innerHTML = 'Perdiste!'
+            break;
+        case 'Empate':
+            historial.push ('Empate');
+            result.innerHTML = 'Es un empate!'
+            break;
     }
 
-    restart = verificarSiNo(texto[0]);
-    if (restart == 'si'){
-        restart = true} 
-        else { restart = false}
-}   
-let informa = verificarSiNo(texto[1]);
-if (informa == 'si'){
+    console.log(historial)   
+}))
+
+
+    
+botonHistorial.addEventListener('click', (e) => {
+    e.preventDefault();
     let informaV = historial.filter(valor => valor == 'Victoria')
     let informaD = historial.filter(valor => valor == 'Derrota')
     let informaE = historial.filter(valor => valor == 'Empate')
-    alert('Usted ha ganado: ' + informaV.length + '\n Perdido: ' + informaD.length + '\n Empatado: ' + informaE.length);
-     console.log(historial)
-}
-alert('El juego ha terminado');
+
+    botonHistorial.innerHTML = `<h2> Usted ha ganado :  ${informaV.length} </h2>
+                                <h2> Usted ha perdido:  ${informaD.length} </h2>
+                                <h2> Usted ha empatado: ${informaE.length} </h2>`
+
+})
+
+
+
+   
 
 
