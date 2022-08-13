@@ -3,7 +3,7 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;    
-    background: #e0e5ec;
+    background: #1b5db9;
 }
 
 .titulo{
@@ -23,6 +23,7 @@ div{
     gap: 2rem;
     align-items: center;
 }
+
 
 
 .btn{
@@ -56,4 +57,9 @@ a{
     margin-left: auto;
     font-size: 1.5rem;
     text-decoration: none;
+    text-align: center;
+}
+
+a:hover{
+    color: red;
 }
