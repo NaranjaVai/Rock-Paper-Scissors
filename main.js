@@ -60,16 +60,31 @@ opciones.forEach(opcion => opcion.addEventListener('click', (e) => {
             historial.push ('Victoria');
             result.innerHTML = 'Ganaste!'
             localStorage.setItem('Resultado', result.innerHTML);
+            swal({
+                title: "Ganaste!",
+                icon: "success",
+                button: "Ok",
+              });
             break;
         case 'Derrota':
             historial.push ('Derrota');
             result.innerHTML = 'Perdiste!'
             localStorage.setItem('Resultado', result.innerHTML);
+            swal({
+                title: "Has Perdido!",
+                icon: "error",
+                button: "Ok",
+              });
             break;
         case 'Empate':
             historial.push ('Empate');
             result.innerHTML = 'Es un empate!'
             localStorage.setItem('Resultado', result.innerHTML);
+            swal({
+                title: "Empate!",
+                icon: "warning",
+                button: "Ok",
+              });
             break;
     }
 
@@ -80,6 +95,7 @@ opciones.forEach(opcion => opcion.addEventListener('click', (e) => {
     localStorage.setItem('Victorias', historial.filter(valor => valor == 'Victoria').length);
     localStorage.setItem('Derrotas', historial.filter(valor => valor == 'Derrota').length);
     localStorage.setItem('Empates', historial.filter(valor => valor == 'Empate').length);
+    
 }))
 
 botonHistorial.addEventListener('click', (e) => {
