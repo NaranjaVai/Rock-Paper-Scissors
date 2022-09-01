@@ -16,14 +16,32 @@ h2{
     text-align: center;
     line-height: 2rem;
 }
-div{
+
+
+.img1{
+    background-color: rgb(90, 148, 36);
+    width: 200px;
+    height: 200px;
+}
+
+.img2{
+    background-color: rgb(180, 126, 64);
+    width: 200px;
+    height: 200px;
+}
+
+.img1 img,.img2 img{
+    width: 150px;
+    height: 150px;
+} 
+
+.btnPlace, .imgPlace{
     display: flex;
     margin-top: 10%;
     justify-content: center;
     gap: 2rem;
     align-items: center;
 }
-
 
 
 .btn{
@@ -53,8 +71,6 @@ div{
   }
   
 a{
-    margin-top: 3rem;
-    margin-left: auto;
     font-size: 1.5rem;
     text-decoration: none;
     text-align: center;
